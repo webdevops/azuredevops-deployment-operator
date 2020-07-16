@@ -3,8 +3,9 @@ package config
 type (
 	Opts struct {
 		// general settings
-		DryRun     bool   `long:"dry-run"       env:"DRY_RUN"   description:"Dry run (no redeploy triggered)"`
-		ConfigPath string `long:"config"        env:"CONFIG"   description:"Config file (yaml)" required:"true"`
+		DryRun     bool   `long:"dry-run"       env:"DRY_RUN"     description:"Dry run (no redeploy triggered)"`
+		ConfigPath string `long:"config"        env:"CONFIG"      description:"Config file (yaml)" required:"true"`
+		Singleshot bool   `long:"singleshot"    env:"SINGLESHOT"  description:"Trigger deployments and exit (ignoring cron)"`
 
 		// logger
 		Logger struct {

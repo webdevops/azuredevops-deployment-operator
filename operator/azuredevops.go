@@ -103,15 +103,26 @@ func (o *AzureDevopsOperator) initMetrics() {
 	prometheus.MustRegister(o.prometheus.deploymentTime)
 }
 
-func (o *AzureDevopsOperator) Start() {
-	for _, config := range o.Config.Releases {
-		_, err := o.cron.AddFunc(config.Crontab, func() {
+func (o *AzureDevopsOperator) RunSingleshot() {
+	for _, configRow := range o.Config.Releases {
+		contextLogger := log.WithFields(log.Fields{
+			"type":    "release",
+			"project": *configRow.Project,
+		})
+		o.triggerReleaseDefinitions(contextLogger, configRow)
+	}
+}
+
+func (o *AzureDevopsOperator) RunCron() {
+	for _, row := range o.Config.Releases {
+		configRow := row
+		_, err := o.cron.AddFunc(configRow.Crontab, func() {
 			contextLogger := log.WithFields(log.Fields{
 				"type":    "release",
-				"project": *config.Project,
-				"crontab": config.Crontab,
+				"project": *configRow.Project,
+				"crontab": configRow.Crontab,
 			})
-			o.triggerReleaseDefinitions(contextLogger, config)
+			o.triggerReleaseDefinitions(contextLogger, configRow)
 		})
 
 		if err != nil {
@@ -271,7 +282,7 @@ func (o *AzureDevopsOperator) triggerExistingReleaseDeployment(contextLogger *lo
 func (o *AzureDevopsOperator) updateReleaseEnvironment(contextLogger *log.Entry, releaseDefinition *release.ReleaseDefinition, releaseEnvironment release.ReleaseEnvironment, comment string, status release.EnvironmentStatus, autoapprove bool) (*release.ReleaseEnvironment, error) {
 	project := releaseDefinition.ProjectReference.Id.String()
 
-	contextLogger.Infof("update release environment deployment of [%s]%s/%s: status -> %s", *releaseDefinition.ProjectReference.Name, *releaseEnvironment.Release.Name, *releaseEnvironment.Name, status)
+	contextLogger.Infof("update release environment deployment of [%s]%s :: %s -> %s: status -> %s", *releaseDefinition.ProjectReference.Name, o.buildReleaseDefinitionName(releaseDefinition), *releaseEnvironment.Release.Name, *releaseEnvironment.Name, status)
 	updateArgs := release.UpdateReleaseEnvironmentArgs{
 		Project:       &project,
 		ReleaseId:     releaseEnvironment.ReleaseId,

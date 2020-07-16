@@ -42,10 +42,17 @@ func main() {
 		Config:       parseAppConfig(opts.ConfigPath),
 	}
 	op.Init()
-	op.Start()
 
-	log.Infof("starting http server on %s", opts.ServerBind)
-	startHttpServer()
+	if opts.Singleshot {
+		// single shot, no cron, no metrics
+		op.RunSingleshot()
+	} else {
+		// damon mode
+		op.RunCron()
+
+		log.Infof("starting http server on %s", opts.ServerBind)
+		startHttpServer()
+	}
 }
 
 // init argparser and parse/validate arguments
