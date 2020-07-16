@@ -128,7 +128,7 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitions(contextLogger *log.Entry
 	}
 	project, err := o.coreClient.GetProject(o.ctx, projArgs)
 	if err != nil {
-		log.Error(err)
+		contextLogger.Error(err)
 	}
 
 	expand := release.ReleaseDefinitionExpands(
@@ -152,7 +152,7 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitions(contextLogger *log.Entry
 
 	releaseDefinitionList, err := o.releaseClient.GetReleaseDefinitions(o.ctx, args)
 	if err != nil {
-		log.Error(err)
+		contextLogger.Error(err)
 	}
 
 	for _, releaseDefinition := range releaseDefinitionList.Value {
@@ -164,7 +164,7 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitions(contextLogger *log.Entry
 
 		err := o.triggerReleaseDefinitionDeploy(contextLogger, config, &releaseDefinition)
 		if err != nil {
-			log.Error(err)
+			contextLogger.Error(err)
 		}
 	}
 }
