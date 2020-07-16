@@ -193,7 +193,6 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitionDeploy(contextLogger *log.
 		if stringArrayContains(config.Environments, *environment.Name) {
 			environmentLogger := contextLogger.WithField("environment", *environment.Name)
 			switch config.Trigger {
-
 			// deploy latest version
 			case "latest":
 				if releaseDefinition.LastRelease != nil && releaseDefinition.LastRelease.Id != nil {
@@ -206,7 +205,7 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitionDeploy(contextLogger *log.
 						config.AutoApprove,
 					)
 					if err != nil {
-						return err
+						environmentLogger.Error(err)
 					}
 				} else {
 					environmentLogger.Warn("unable to find latest release")
@@ -224,7 +223,7 @@ func (o *AzureDevopsOperator) triggerReleaseDefinitionDeploy(contextLogger *log.
 						config.AutoApprove,
 					)
 					if err != nil {
-						return err
+						environmentLogger.Error(err)
 					}
 				} else {
 					environmentLogger.Warn("unable to find current release")
