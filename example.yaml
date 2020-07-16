@@ -7,3 +7,10 @@ releases:
     releaseDefinitions:
       searchText: \group1\
       searchTextContainsFolderName: true
+  - crontab: "@every 1m"
+    project: testing
+    environments: [dev, int]
+    trigger: latest
+    autoApprove: true
+    releaseDefinitions:
+      definitionIdFilter: [1]
