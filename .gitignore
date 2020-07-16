@@ -1,0 +1,4 @@
+/vendor/
+/azuredevops-deployment-operator
+/*.exe
+

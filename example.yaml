@@ -1,0 +1,9 @@
+releases:
+  - crontab: "@every 1m"
+    project: testing
+    environments: [dev]
+    trigger: current
+    autoApprove: true
+    releaseDefinitions:
+      searchText: \group1\
+      searchTextContainsFolderName: true
