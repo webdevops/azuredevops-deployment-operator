@@ -19,6 +19,7 @@ Usage:
 Application Options:
       --dry-run                      Dry run (no redeploy triggered) [$DRY_RUN]
       --config=                      Config file (yaml) [$CONFIG]
+      --singleshot                   Trigger deployments and exit (ignoring cron) [$SINGLESHOT]
       --debug                        debug mode [$DEBUG]
   -v, --verbose                      verbose mode [$VERBOSE]
       --log.json                     Switch log output to json format [$LOG_JSON]
