@@ -26,6 +26,9 @@ vendor:
 image: build
 	docker build -t $(NAME):$(TAG) .
 
+test:
+	go test ./...
+
 .PHONY: lint
 lint: $(GOLANGCI_LINT_BIN)
 	# megacheck fails to respect build flags, causing compilation failure during linting.

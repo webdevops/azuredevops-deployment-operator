@@ -9,6 +9,7 @@ RUN go mod download
 
 # Compile
 COPY ./ /go/src/github.com/webdevops/azuredevops-deployment-operator
+RUN make test
 RUN make lint
 RUN make build
 RUN ./azuredevops-deployment-operator --help

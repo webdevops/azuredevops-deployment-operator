@@ -2,8 +2,8 @@ AzureDevOps Deployment operator
 ===============================
 
 [![license](https://img.shields.io/github/license/webdevops/azuredevops-deployment-operator.svg)](https://github.com/webdevops/azuredevops-deployment-operator/blob/master/LICENSE)
-[![Docker](https://img.shields.io/badge/docker-webdevops%2Fazure--k8s--autopilot-blue.svg?longCache=true&style=flat&logo=docker)](https://hub.docker.com/r/webdevops/azuredevops-deployment-operator/)
-[![Docker Build Status](https://img.shields.io/docker/cloud/build/webdevops/azuredevops-deployment-operator)](https://hub.docker.com/r/webdevops/azuredevops-deployment-operator/)
+[![DockerHub](https://img.shields.io/badge/DockerHub-webdevops%2Fazuredevops--deployment--operator-blue)](https://hub.docker.com/r/webdevops/azuredevops-deployment-operator/)
+[![Quay.io](https://img.shields.io/badge/Quay.io-webdevops%2Fazuredevops--deployment--operator-blue)](https://quay.io/repository/webdevops/azuredevops-deployment-operator)
 
 Triggers (re)deployments of releases in AzureDevOps and also auto approves them if configured.
 
