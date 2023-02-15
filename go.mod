@@ -17,13 +17,10 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.1 // indirect
 	github.com/nxadm/tail v1.4.5 // indirect
 	github.com/onsi/ginkgo v1.14.2 // indirect
-	github.com/prometheus/client_golang v1.8.0
-	github.com/prometheus/common v0.15.0 // indirect
+	github.com/prometheus/client_golang v1.11.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.7.0
 	golang.org/x/crypto v0.0.0-20201117144127-c1f2f97bffc9 // indirect
-	golang.org/x/sys v0.0.0-20201117170446-d9b008d0a637 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0
 )
